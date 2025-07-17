@@ -4,22 +4,117 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Grafiadellis Vasileios | Finance Portfolio</title>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
+    :root {
+      --background: #1a1a1a;
+      --text: white;
+      --accent: #00ffd1;
+      --button-bg: #00f5c3;
+    }
+    body.light-mode {
+      --background: #ced9b4;
+      --text: #111;
+      --accent: #00b894;
+      --button-bg: #55efc4;
+    }
     body {
       margin: 0;
+      padding: 0;
+      background: linear-gradient(-45deg, var(--background), #222222, var(--background), #262626);
+      background-size: 400% 400%;
+      animation: gradientShift 25s ease infinite;
+      color: var(--text);
       font-family: 'Segoe UI', sans-serif;
-      background: #0f0f0f;
-      color: #f2f2f2;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
       padding: 40px;
+      overflow: hidden;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .sidebar {
+      width: 200px;
+      height: 100vh;
+      background-color: #0d0d0d;
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding-top: 40px;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+    }
+    .sidebar ul { list-style: none; padding: 0; }
+    .sidebar li { margin-bottom: 20px; }
+    .sidebar .nav-link {
+      display: block;
+      padding: 12px 25px;
+      color: #aaa;
+      text-decoration: none;
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+    .sidebar .nav-link:hover,
+    .sidebar .nav-link.active {
+      color: var(--accent);
+      font-weight: bold;
+      border-left: 4px solid var(--accent);
+      background-color: #1a1a1a;
+    }
+    .main-content {
+      margin-left: 200px;
+      padding: 20px 40px 0 40px;
+      width: calc(100% - 200px);
+    }
+    .lang-buttons {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      z-index: 1000;
+    }
+    .lang-buttons button {
+      background-color: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      font-weight: bold;
+      font-size: 14px;
+      padding: 6px 12px;
+      margin-left: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .lang-buttons button:hover {
+      background-color: var(--accent);
+      color: #000;
+      transform: scale(1.1);
+    }
+    .lang-buttons button.active {
+      background-color: var(--accent);
+      color: #000;
+    }
+    .flag-icon {
+      width: 20px;
+      height: 14px;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    .toggle-mode {
+      position: absolute;
+      top: 20px;
+      left: 220px;
+      color: var(--accent);
+      cursor: pointer;
+      font-weight: bold;
     }
     h1 {
       font-size: 2.8rem;
-      color: #00ffd5;
+      color: var(--accent);
       margin-bottom: 0.3em;
     }
     h2 {
@@ -27,36 +122,211 @@
       font-weight: 400;
       color: #bbb;
       margin-top: 0;
+      max-width: 80%;
+      text-align: center;
+      margin: 0 auto;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+      transform: scale(1.05);
+      box-shadow: 0px 4px 15px rgba(0, 245, 195, 0.5);
     }
     .section {
       max-width: 700px;
       margin-top: 2em;
       text-align: center;
     }
-    a {
-      color: #00ffd5;
+    .button-group {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .button-group a {
+      padding: 12px 24px;
+      background-color: var(--button-bg);
+      color: #111;
+      border-radius: 30px;
+      font-weight: bold;
       text-decoration: none;
+      transition: 0.3s ease;
+    }
+    .button-group a:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 4px 15px rgba(0, 245, 195, 0.5);
+    }
+    .profile-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 85vh;
+      padding-top: 20px;
+    }
+    .profile-pic {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      margin-bottom: 20px;
+    }
+    .contact-links {
+      margin-top: 15px;
       font-weight: bold;
     }
-    a:hover {
-      text-decoration: underline;
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      color: var(--accent);
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
     }
+	.contact-links img {
+  height: 16px;
+  width: auto;
+  vertical-align: middle;
+}
+	
   </style>
 </head>
 <body>
-  <h1>Grafiadellis Vasileios</h1>
-  <h2>Finance | Investment Banking | M&A | Strategic Advisory</h2>
-
-  <div class="section">
-    <p>
-      I’m an International Finance student at EDHEC with a passion for M&A, corporate strategy, and long-term value creation.
-     <p>
-    <p>
-      📍 Based in Europe — working across UK, Switzerland & Greece.
-    </p>
-    <p>
-      💼 <a href="https://www.linkedin.com/vasileios.grafiadellis">Visit my LinkedIn</a> | 📩 <a href="mailto:billygrafiadellis@gmail.com">Contact Me</a>
-    </p>
+  <div class="toggle-mode" onclick="toggleMode()" title="Toggle Light/Dark Mode">🌓 Toggle Mode</div>
+  <div class="sidebar">
+    <ul>
+      <li><a href="index.html" class="nav-link active">Home</a></li>
+      <li><a href="education.html" class="nav-link" title="My Education">Education</a></li>
+      <li><a href="experience.html" class="nav-link" title="My Work Experience">Experience</a></li>
+      <li><a href="certificates.html" class="nav-link" title="My Certifications">Certificates</a></li>
+      <li><a href="#skills" class="nav-link" title="Skillset">Skills</a></li>
+      <li><a href="#languages" class="nav-link" title="Languages I speak">Languages</a></li>
+      <li><a href="#blog" class="nav-link" title="Personal Blog">Blog</a></li>
+      <li><a href="#projects" class="nav-link" title="Personal Projects">Projects</a></li>
+      <li><a href="contact.html" class="nav-link" title="Get in Touch">Contact</a></li>
+    </ul>
   </div>
+  <div class="lang-buttons">
+    <button onclick="setLanguage('en')" data-lang="en" title="Switch to English">
+      <img src="Flag2.jpg" alt="English" class="flag-icon"> EN
+    </button>
+    <button onclick="setLanguage('gr')" data-lang="gr" title="Switch to Greek">
+      <img src="Flag.png" alt="Greek" class="flag-icon"> GR
+    </button>
+    <button onclick="setLanguage('fr')" data-lang="fr" title="Switch to French">
+      <img src="France.jpg" alt="French" class="flag-icon"> FR
+    </button>
+  </div>
+  <div class="main-content">
+    <div class="profile-container" data-aos="fade-up">
+      <img src="profile.png" alt="Profile Photo" class="profile-pic">
+      <h1 id="main-title">Vasileios Grafiadellis <img src="flag.png" alt="Greek Flag" style="width: 32px; vertical-align: middle; margin-left: 8px;" /></h1>
+      <h2 id="description">Finance | Investment Banking | M&A | Structured Finance | Project Finance - Concessions | Accounting</h2>
+      <div class="button-group">
+        <a href="education.html" title="Learn about my education">🎓 Education</a>
+        <a href="experience.html" title="View my experience">💼 Experience</a>
+        <a href="certificates.html" title="See certifications">🏅 Certificates/Awards</a>
+      </div>
+      <div class="contact-links">
+      <a href="https://www.linkedin.com/in/vasileios-grafiadellis/">
+  <img src="IN.png" alt="LinkedIn Icon" style="width:16px; vertical-align: middle; margin-right: 6px;">
+  <span id="linkedin">LinkedIn</span>
+</a>
+        📩 <a href="mailto:billygrafiadellis@gmail.com" id="contact">Contact</a>
+      </div>
+    </div>
+  </div>
+  <footer>
+    © 2025 Vasileios Grafiadellis. All rights reserved.
+  </footer>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+
+  function setLanguage(lang) {
+    const translations = {
+      en: {
+        title: "Vasileios Grafiadellis",
+        description: "Finance | Investment Banking | M&A | Structured Finance | Project Finance - Concessions | Accounting",
+        linkedin: "LinkedIn",
+        contact: "Contact",
+        btn_edu: "🎓 Education",
+        btn_exp: "💼 Experience",
+        btn_cert: "🏅 Certificates/Awards",
+        nav: ["Home", "Education", "Experience", "Certificates", "Skills", "Languages", "Blog", "Projects", "Contact"]
+      },
+      gr: {
+        title: "Βασίλειος Γραφιαδέλλης",
+        description: "Χρηματοοικονομικά | Επενδυτική Τραπεζική | Εξαγορές & Συγχωνεύσεις | Δομημένη Χρηματοδότηση | Εταιρική Χρηματοδότηση - Παραχωρήσεις | Λογιστική",
+        linkedin: "LinkedIn",
+        contact: "Επικοινωνία",
+        btn_edu: "🎓 Εκπαίδευση",
+        btn_exp: "💼 Εμπειρία",
+        btn_cert: "🏅 Πιστοποιήσεις / Βραβεία",
+        nav: ["Αρχική", "Εκπαίδευση", "Εμπειρία", "Πιστοποιήσεις", "Δεξιότητες", "Γλώσσες", "Blog", "Projects", "Επικοινωνία"]
+      },
+      fr: {
+        title: "Vasileios Grafiadellis",
+        description: "Finance | Banque d’investissement | Fusions & Acquisitions | Finance Structurée | Financement d'entreprise & Concessions | Comptabilité",
+        linkedin: "LinkedIn",
+        contact: "Contact",
+        btn_edu: "🎓 Éducation",
+        btn_exp: "💼 Expérience",
+        btn_cert: "🏅 Diplômes / Récompenses",
+        nav: ["Accueil", "Éducation", "Expérience", "Certificats", "Compétences", "Langues", "Blog", "Projets", "Contact"]
+      }
+    };
+
+    const t = translations[lang];
+
+    // Update safe title
+    const mainTitle = document.getElementById('main-title');
+    if (mainTitle && t.title) {
+      const textNode = Array.from(mainTitle.childNodes).find(n => n.nodeType === 3);
+      if (textNode) textNode.nodeValue = t.title + ' ';
+    }
+
+    document.getElementById('description').innerText = t.description;
+    document.getElementById('linkedin').innerText = t.linkedin;
+    document.getElementById('contact').innerText = t.contact;
+
+    // Update main buttons
+    const buttons = document.querySelectorAll('.button-group a');
+    if (buttons.length >= 3) {
+      buttons[0].innerText = t.btn_edu;
+      buttons[1].innerText = t.btn_exp;
+      buttons[2].innerText = t.btn_cert;
+    }
+
+    // Update sidebar nav links
+    const navLinks = document.querySelectorAll('.sidebar .nav-link');
+    navLinks.forEach((link, i) => {
+      if (t.nav[i]) link.innerText = t.nav[i];
+    });
+
+    // Highlight language button
+    document.querySelectorAll('.lang-buttons button').forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.dataset.lang === lang) {
+        btn.classList.add('active');
+      }
+    });
+  }
+
+  function toggleMode() {
+    document.body.classList.toggle('light-mode');
+  }
+
+  window.onload = () => setLanguage('en');
+</script>
+
 </body>
 </html>

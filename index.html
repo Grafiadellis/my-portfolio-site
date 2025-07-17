@@ -13,7 +13,7 @@
       --button-bg: #00f5c3;
     }
     body.light-mode {
-      --background: #f9f9f9;
+      --background: #ced9b4;
       --text: #111;
       --accent: #00b894;
       --button-bg: #55efc4;
@@ -23,7 +23,7 @@
       padding: 0;
       background: linear-gradient(-45deg, var(--background), #222222, var(--background), #262626);
       background-size: 400% 400%;
-      animation: gradientShift 40s ease infinite;
+      animation: gradientShift 25s ease infinite;
       color: var(--text);
       font-family: 'Segoe UI', sans-serif;
       display: flex;
@@ -191,6 +191,12 @@
       padding: 10px;
       font-size: 14px;
     }
+	.contact-links img {
+  height: 16px;
+  width: auto;
+  vertical-align: middle;
+}
+	
   </style>
 </head>
 <body>
@@ -230,7 +236,10 @@
         <a href="certificates.html" title="See certifications">🏅 Certificates/Awards</a>
       </div>
       <div class="contact-links">
-        💼 <a href="https://www.linkedin.com/in/vasileios-grafiadellis/" id="linkedin">LinkedIn</a> |
+      <a href="https://www.linkedin.com/in/vasileios-grafiadellis/">
+  <img src="IN.png" alt="LinkedIn Icon" style="width:16px; vertical-align: middle; margin-right: 6px;">
+  <span id="linkedin">LinkedIn</span>
+</a>
         📩 <a href="mailto:billygrafiadellis@gmail.com" id="contact">Contact</a>
       </div>
     </div>
@@ -239,45 +248,85 @@
     © 2025 Vasileios Grafiadellis. All rights reserved.
   </footer>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init();
-    function setLanguage(lang) {
-      const translations = {
-        en: {
-          title: "Vasileios Grafiadellis",
-          description: "Finance | Investment Banking | M&A | Structured Finance | Project Finance - Concessions | Accounting",
-          linkedin: "LinkedIn",
-          contact: "Contact",
-        },
-        gr: {
-          title: "Βασίλειος Γραφιαδέλλης",
-          description: "Χρηματοοικονομικά | Επενδυτική Τραπεζική | Εξαγορές & Συγχωνεύσεις | Δομημένη Χρηματοδότηση | Εταιρική Χρηματοδότηση - Παραχωρήσεις | Λογιστική",
-          linkedin: "LinkedIn",
-          contact: "Contact",
-        },
-        fr: {
-          title: "Vasileios Grafiadellis",
-          description: "Finance | Banque d’investissement | Fusions & Acquisitions | Finance Structurée | Financement d'entreprise & Concessions | Comptabilité",
-          linkedin: "LinkedIn",
-          contact: "Contact",
-        }
-      };
-      const t = translations[lang];
-      document.getElementById('main-title').childNodes[0].nodeValue = t.title + ' ';
-      document.getElementById('description').innerText = t.description;
-      document.getElementById('linkedin').innerText = t.linkedin;
-      document.getElementById('contact').innerText = t.contact;
-      document.querySelectorAll('.lang-buttons button').forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.dataset.lang === lang) {
-          btn.classList.add('active');
-        }
-      });
+<script>
+  AOS.init();
+
+  function setLanguage(lang) {
+    const translations = {
+      en: {
+        title: "Vasileios Grafiadellis",
+        description: "Finance | Investment Banking | M&A | Structured Finance | Project Finance - Concessions | Accounting",
+        linkedin: "LinkedIn",
+        contact: "Contact",
+        btn_edu: "🎓 Education",
+        btn_exp: "💼 Experience",
+        btn_cert: "🏅 Certificates/Awards",
+        nav: ["Home", "Education", "Experience", "Certificates", "Skills", "Languages", "Blog", "Projects", "Contact"]
+      },
+      gr: {
+        title: "Βασίλειος Γραφιαδέλλης",
+        description: "Χρηματοοικονομικά | Επενδυτική Τραπεζική | Εξαγορές & Συγχωνεύσεις | Δομημένη Χρηματοδότηση | Εταιρική Χρηματοδότηση - Παραχωρήσεις | Λογιστική",
+        linkedin: "LinkedIn",
+        contact: "Επικοινωνία",
+        btn_edu: "🎓 Εκπαίδευση",
+        btn_exp: "💼 Εμπειρία",
+        btn_cert: "🏅 Πιστοποιήσεις / Βραβεία",
+        nav: ["Αρχική", "Εκπαίδευση", "Εμπειρία", "Πιστοποιήσεις", "Δεξιότητες", "Γλώσσες", "Blog", "Projects", "Επικοινωνία"]
+      },
+      fr: {
+        title: "Vasileios Grafiadellis",
+        description: "Finance | Banque d’investissement | Fusions & Acquisitions | Finance Structurée | Financement d'entreprise & Concessions | Comptabilité",
+        linkedin: "LinkedIn",
+        contact: "Contact",
+        btn_edu: "🎓 Éducation",
+        btn_exp: "💼 Expérience",
+        btn_cert: "🏅 Diplômes / Récompenses",
+        nav: ["Accueil", "Éducation", "Expérience", "Certificats", "Compétences", "Langues", "Blog", "Projets", "Contact"]
+      }
+    };
+
+    const t = translations[lang];
+
+    // Update safe title
+    const mainTitle = document.getElementById('main-title');
+    if (mainTitle && t.title) {
+      const textNode = Array.from(mainTitle.childNodes).find(n => n.nodeType === 3);
+      if (textNode) textNode.nodeValue = t.title + ' ';
     }
-    function toggleMode() {
-      document.body.classList.toggle('light-mode');
+
+    document.getElementById('description').innerText = t.description;
+    document.getElementById('linkedin').innerText = t.linkedin;
+    document.getElementById('contact').innerText = t.contact;
+
+    // Update main buttons
+    const buttons = document.querySelectorAll('.button-group a');
+    if (buttons.length >= 3) {
+      buttons[0].innerText = t.btn_edu;
+      buttons[1].innerText = t.btn_exp;
+      buttons[2].innerText = t.btn_cert;
     }
-    window.onload = () => setLanguage('en');
-  </script>
+
+    // Update sidebar nav links
+    const navLinks = document.querySelectorAll('.sidebar .nav-link');
+    navLinks.forEach((link, i) => {
+      if (t.nav[i]) link.innerText = t.nav[i];
+    });
+
+    // Highlight language button
+    document.querySelectorAll('.lang-buttons button').forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.dataset.lang === lang) {
+        btn.classList.add('active');
+      }
+    });
+  }
+
+  function toggleMode() {
+    document.body.classList.toggle('light-mode');
+  }
+
+  window.onload = () => setLanguage('en');
+</script>
+
 </body>
 </html>

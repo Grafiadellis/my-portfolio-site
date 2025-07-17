@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grafiadellis Vasileios | Finance Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f0f0f;
+      color: #f2f2f2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 40px;
+    }
+    h1 {
+      font-size: 2.8rem;
+      color: #00ffd5;
+      margin-bottom: 0.3em;
+    }
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #bbb;
+      margin-top: 0;
+    }
+    .section {
+      max-width: 700px;
+      margin-top: 2em;
+      text-align: center;
+    }
+    a {
+      color: #00ffd5;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Grafiadellis Vasileios</h1>
+  <h2>Finance | Investment Banking | M&A | Strategic Advisory</h2>
+
+  <div class="section">
+    <p>
+      I’m an International Finance student at EDHEC with a passion for M&A, corporate strategy, and long-term value creation.
+     <p>
+    <p>
+      📍 Based in Europe — working across UK, Switzerland & Greece.
+    </p>
+    <p>
+      💼 <a href="https://www.linkedin.com/vasileios.grafiadellis">Visit my LinkedIn</a> | 📩 <a href="mailto:billygrafiadellis@gmail.com">Contact Me</a>
+    </p>
+  </div>
+</body>
+</html>

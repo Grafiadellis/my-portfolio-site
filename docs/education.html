@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Education | Vasileios Grafiadellis</title>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <style>
+    :root {
+      --background: #1a1a1a;
+      --text: white;
+      --accent: #00ffd1;
+      --button-bg: #00f5c3;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      font-family: 'Segoe UI', sans-serif;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    .sidebar {
+      width: 200px;
+      height: 100vh;
+      background-color: #0d0d0d;
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding-top: 40px;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+    }
+    .sidebar ul { list-style: none; padding: 0; }
+    .sidebar li { margin-bottom: 20px; }
+    .sidebar .nav-link {
+      display: block;
+      padding: 12px 25px;
+      color: #aaa;
+      text-decoration: none;
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+    .sidebar .nav-link:hover,
+    .sidebar .nav-link.active {
+      color: var(--accent);
+      font-weight: bold;
+      border-left: 4px solid var(--accent);
+      background-color: #1a1a1a;
+    }
+
+    .sidebar .nav-link {
+      display: block;
+      padding: 12px 25px;
+      color: #aaa;
+      text-decoration: none;
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+
+
+    .lang-buttons {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      z-index: 1000;
+    }
+
+    .lang-buttons button {
+      background-color: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      font-weight: bold;
+      font-size: 14px;
+      padding: 6px 12px;
+      margin-left: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .lang-buttons button:hover,
+    .lang-buttons button.active {
+      background-color: var(--accent);
+      color: #000;
+    }
+
+    .flag-icon {
+      width: 20px;
+      height: 14px;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    .content {
+      margin-left: 220px;
+      padding: 60px 40px;
+    }
+
+    h1 {
+      color: var(--accent);
+    }
+
+    .timeline {
+      position: relative;
+      margin-left: 60px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 18px;
+      width: 4px;
+      height: 100%;
+      background: repeating-linear-gradient(
+        to bottom,
+        var(--accent),
+        var(--accent) 10px,
+        transparent 10px,
+        transparent 20px
+      );
+      z-index: 0;
+    }
+
+    .edu-card {
+      position: relative;
+      background: #1f1f1f;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      padding: 20px;
+      margin-bottom: 60px;
+      margin-left: 40px;
+    }
+
+    .edu-card::before {
+      content: '';
+      position: absolute;
+      left: -34px;
+      top: 20px;
+      width: 18px;
+      height: 18px;
+      background-color: var(--accent);
+      border: 4px solid #1a1a1a;
+      border-radius: 50%;
+      z-index: 2;
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+
+    .edu-card img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .edu-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--accent);
+    }
+
+    .edu-date {
+      font-size: 14px;
+      color: #ccc;
+      margin-bottom: 10px;
+    }
+
+    .edu-desc {
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .course-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .course-list span {
+      background-color: #00f5c31a;
+      border: 1px solid var(--button-bg);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 16px;
+      font-size: 0.85rem;
+    }
+	.honors-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #00ffd1;
+  color: #000;
+  font-weight: bold;
+  padding: 5px 12px;
+  border-radius: 12px;
+  box-shadow: 0 0 8px #00ffd1, 0 0 12px #00ffd1;
+  font-size: 14px;
+  z-index: 10;
+}
+	
+  </style>
+</head>
+<body>
+    <div class="toggle-mode" onclick="toggleMode()" title="Toggle Light/Dark Mode">🌓 Toggle Mode</div>
+  <div class="sidebar">
+    <ul>
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="education.html" class="nav-link active" title="My Education">Education</a></li>
+      <li><a href="experience.html" class="nav-link" title="My Work Experience">Experience</a></li>
+      <li><a href="certificates.html" class="nav-link" title="My Certifications">Certificates</a></li>
+      <li><a href="#skills" class="nav-link" title="Skillset">Skills</a></li>
+      <li><a href="#languages" class="nav-link" title="Languages I speak">Languages</a></li>
+      <li><a href="#blog" class="nav-link" title="Personal Blog">Blog</a></li>
+      <li><a href="#projects" class="nav-link" title="Personal Projects">Projects</a></li>
+      <li><a href="contact.html" class="nav-link" title="Get in Touch">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="lang-buttons">
+    <button onclick="setLanguage('en')" data-lang="en"><img src="Flag2.jpg" class="flag-icon" />EN</button>
+    <button onclick="setLanguage('gr')" data-lang="gr"><img src="Flag.png" class="flag-icon" />GR</button>
+    <button onclick="setLanguage('fr')" data-lang="fr"><img src="France.jpg" class="flag-icon" />FR</button>
+  </div>
+
+  <div class="content">
+    <h1 id="edu-title">🎓 Education</h1>
+    <div class="timeline">
+      <div class="edu-card" data-aos="fade-up">
+        <img src="EDHEC.jpg" alt="EDHEC Logo">
+        <div class="edu-title" id="edhec-title"></div>
+		<div class="honors-badge">Honors</div>
+        <div class="edu-date" id="edhec-date"></div>
+        <div class="course-list" id="edhec-courses"></div>
+        <div class="edu-desc" id="edhec-awards"></div>
+      </div>
+
+      <div class="edu-card" data-aos="fade-up">
+        <img src="KCL.png" alt="KCL Logo">
+        <div class="edu-title" id="kcl-title"></div>
+		<div class="honors-badge">Accomplished</div>
+        <div class="edu-date" id="kcl-date"></div>
+        <div class="edu-desc" id="kcl-desc"></div>
+        <div class="course-list" id="kcl-courses"></div>
+      </div>
+
+      <div class="edu-card" data-aos="fade-up">
+        <img src="PIERCE.png" alt="Pierce Logo">
+        <div class="edu-title" id="pierce-title"></div>
+		<div class="honors-badge">Distinction</div>
+        <div class="edu-date" id="pierce-date"></div>
+        <div class="course-list" id="pierce-courses"></div>
+        <div class="edu-desc" id="pierce-desc"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    const translations = {
+      en: {
+        title: "Education",
+        nav: ["Home", "Education", "Experience", "Certificates", "Skills", "Languages", "Blog", "Projects", "Contact"],
+        edhec: {
+          title: "EDHEC Business School: International BBA (Specialization in Finance)",
+          date: "2023 – 2027",
+          courses: ["Accounting", "Business Law", "Business Software", "Corporate Finance", "Economics", "Principles of Finance", "Taxation"],
+          awards: "Dean's List, Scholarship of Excellence, School Ambassador"
+        },
+        kcl: {
+          title: "King's College London: Global Manager Certificate",
+          date: "2025 (Academic Exchange)",
+          desc: "Completed academic exchange (Global Manager Certificate) with coursework in:",
+          courses: ["International Business", "International Economics", "Marketing", "Leading & Managing Teams"]
+        },
+        pierce: {
+          title: "The American College of Greece: International Baccalaureate",
+          date: "2021 – 2023",
+          courses: ["Business Management HL", "English B HL", "Mathematics AI HL", "Psychology SL", "Computer Science SL", "Modern Greek SL"],
+          desc: "Graduated with distinction | IB Diploma | Athlete of the Year Award"
+        }
+      },
+      gr: {
+        title: "Σπουδές",
+        nav: ["Αρχική", "Σπουδές", "Εμπειρία", "Πιστοποιήσεις", "Δεξιότητες", "Γλώσσες", "Ιστολόγιο", "Έργα", "Επικοινωνία"],
+        edhec: {
+          title: "EDHEC Business School: Διεθνές BBA (Κατεύθυνση: Χρηματοοικονομικά)",
+          date: "2023 – 2027",
+          courses: ["Λογιστική", "Εμπορικό Δίκαιο", "Επιχειρησιακό Λογισμικό", "Εταιρική Χρηματοδότηση", "Οικονομικά", "Αρχές Χρηματοοικονομικών", "Φορολογία"],
+          awards: "Λίστα Αριστούχων, Υποτροφία Αριστείας, Πρεσβευτής Σχολής"
+        },
+        kcl: {
+          title: "King's College London: Πιστοποιητικό Global Manager",
+          date: "2025 (Ακαδημαϊκή Ανταλλαγή)",
+          desc: "Ολοκλήρωσα πρόγραμμα ανταλλαγής (Global Manager Certificate) με μαθήματα:",
+          courses: ["Διεθνείς Επιχειρήσεις", "Διεθνής Οικονομία", "Μάρκετινγκ", "Ηγεσία & Διαχείριση Ομάδων"]
+        },
+        pierce: {
+          title: "Αμερικανικό Κολλέγιο Ελλάδος: Διεθνές Απολυτήριο",
+          date: "2021 – 2023",
+          courses: ["Διοίκηση Επιχειρήσεων HL", "Αγγλικά B HL", "Μαθηματικά AI HL", "Ψυχολογία SL", "Πληροφορική SL", "Νέα Ελληνικά SL"],
+          desc: "Αποφοίτηση με διάκριση | IB Δίπλωμα | Βραβείο Καλύτερου Αθλητή"
+        }
+      },
+      fr: {
+        title: "Formation",
+        nav: ["Accueil", "Formation", "Expérience", "Certificats", "Compétences", "Langues", "Blog", "Projets", "Contact"],
+        edhec: {
+          title: "EDHEC Business School: BBA International (Spécialisation Finance)",
+          date: "2023 – 2027",
+          courses: ["Comptabilité", "Droit des affaires", "Logiciels de gestion", "Finance d'entreprise", "Économie", "Principes de finance", "Fiscalité"],
+          awards: "Liste d'honneur, Bourse d'excellence, Ambassadeur de l'école"
+        },
+        kcl: {
+          title: "King's College London: Certificat Global Manager",
+          date: "2025 (Échange académique)",
+          desc: "Programme d'échange (Certificat Global Manageravec cours en:",
+          courses: ["Affaires internationales", "Économie internationale", "Marketing", "Leadership et gestion"]
+        },
+        pierce: {
+          title: "Collège américain de Grèce: Baccalauréat international",
+          date: "2021 – 2023",
+          courses: ["Gestion HL", "Anglais B HL", "Mathématiques AI HL", "Psychologie SL", "Informatique SL", "Grec moderne SL"],
+          desc: "Diplômé avec distinction | Diplôme IB | Meilleur Athlète de l'année"
+        }
+      }
+    };
+
+    function setLanguage(lang) {
+      const t = translations[lang];
+      document.getElementById("edu-title").innerText = "🎓 " + t.title;
+      const navIds = ["nav-home", "nav-edu", "nav-exp", "nav-cert", "nav-skills", "nav-lang", "nav-blog", "nav-proj", "nav-contact"];
+      navIds.forEach((id, i) => {
+        const el = document.getElementById(id);
+        if (el) el.innerText = t.nav[i];
+      });
+
+      document.getElementById("edhec-title").innerText = t.edhec.title;
+      document.getElementById("edhec-date").innerText = t.edhec.date;
+      document.getElementById("edhec-awards").innerText = t.edhec.awards;
+      const eCourses = document.getElementById("edhec-courses");
+      eCourses.innerHTML = '';
+      t.edhec.courses.forEach(c => {
+        const s = document.createElement('span');
+        s.innerText = c;
+        eCourses.appendChild(s);
+      });
+
+      document.getElementById("kcl-title").innerText = t.kcl.title;
+      document.getElementById("kcl-date").innerText = t.kcl.date;
+      document.getElementById("kcl-desc").innerText = t.kcl.desc;
+      const kCourses = document.getElementById("kcl-courses");
+      kCourses.innerHTML = '';
+      t.kcl.courses.forEach(c => {
+        const s = document.createElement('span');
+        s.innerText = c;
+        kCourses.appendChild(s);
+      });
+
+      document.getElementById("pierce-title").innerText = t.pierce.title;
+      document.getElementById("pierce-date").innerText = t.pierce.date;
+      document.getElementById("pierce-desc").innerText = t.pierce.desc;
+      const pCourses = document.getElementById("pierce-courses");
+      pCourses.innerHTML = '';
+      t.pierce.courses.forEach(c => {
+        const s = document.createElement('span');
+        s.innerText = c;
+        pCourses.appendChild(s);
+      });
+
+      document.querySelectorAll(".lang-buttons button").forEach(btn => {
+        btn.classList.remove("active");
+        if (btn.dataset.lang === lang) btn.classList.add("active");
+      });
+    }
+
+    window.onload = () => setLanguage('en');
+  </script>
+</body>
+</html>
